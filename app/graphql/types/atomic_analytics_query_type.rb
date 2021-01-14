@@ -1,6 +1,6 @@
-class Types::HelloWorldQueryType < Types::BaseObject
+class Types::AtomicAnalyticsQueryType < Types::BaseObject
   field :welcome_message, String, null: true do
-    description "Get the Hello World welcome message"
+    description "Get the Atomic Analytics welcome message"
     argument :name, String, required: true
   end
 

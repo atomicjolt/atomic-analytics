@@ -1,4 +1,4 @@
-# LTI Starter App  [![Build Status](https://travis-ci.org/atomicjolt/lti_starter_app.svg?branch=master)](https://travis-ci.org/atomicjolt/lti_starter_app) [![Coverage Status](https://coveralls.io/repos/github/atomicjolt/lti_starter_app/badge.svg?branch=master)](https://coveralls.io/github/atomicjolt/lti_starter_app?branch=master)
+# Atomic Analytics  [![Build Status](https://travis-ci.org/atomicjolt/atomic_analytics.svg?branch=master)](https://travis-ci.org/atomicjolt/atomic_analytics) [![Coverage Status](https://coveralls.io/repos/github/atomicjolt/atomic_analytics/badge.svg?branch=master)](https://coveralls.io/github/atomicjolt/atomic_analytics?branch=master)
 
 There are many starter kits that will help you get started with React and Redux.
 This is the one created by, maintained by and used by [Atomic Jolt](http://www.atomicjolt.com).
@@ -7,10 +7,10 @@ utilize React.
 
 # Getting Started
 
-Build a new application using the LTI Starter App Rails application template:
+Build a new application using the Atomic Analytics Rails application template:
 
 ```
-rails new my_app -m https://raw.githubusercontent.com/atomicjolt/lti_starter_app/master/template.rb
+rails new my_app -m https://raw.githubusercontent.com/atomicjolt/atomic_analytics/master/template.rb
 ```
 
 ## Prerequisites
@@ -29,16 +29,16 @@ You will need to [obtain a Developer ID and Key from an Account Admin for the in
 You will also need to setup a default LTLI application and LTI application instance. See the [sections below](#setting-up-lti-starter-app) for information on setting up the default account.
 
 
-## Running LTI Starter App
+## Running Atomic Analytics
 
-After [setting up the LTI Starter App](#setting-up-lti-starter-app), start Rails and the webpack server:
+After [setting up the Atomic Analytics](#setting-up-lti-starter-app), start Rails and the webpack server:
 ```
   $ rails server
   $ yarn hot
 ```
 
 
-## Setting up LTI Starter App
+## Setting up Atomic Analytics
 
 ### File Modifications
 -----------
@@ -51,9 +51,9 @@ Note: the App and Assets subdomains must be different.
 
 
 #### Modify application name (*Note: if you started a new rails project with this as a template, this step should already be done*)
-1. Open application.rb and change `ltistarterapp` to the name you choose.
-2. Do a global search and replace for `lti_starter_app` and change it to the name you choose.
-3. Do a global search and replace for `ltistarterapp` (use only letters or numbers for this name. Special characters like '_' will result in errors).
+1. Open application.rb and change `AtomicAnalytics` to the name you choose.
+2. Do a global search and replace for `atomic_analytics` and change it to the name you choose.
+3. Do a global search and replace for `AtomicAnalytics` (use only letters or numbers for this name. Special characters like '_' will result in errors).
 
 #### Update webpack.yml
 1. Open `config/webpack.yml`
@@ -64,7 +64,7 @@ Note: the App and Assets subdomains must be different.
 #### Change `bin/bootstrap`
 In `bin/bootstrap` change the following line to point to a dropbox folder containing the correct config files for the project. For example:
 ```
-DROPBOX_FOLDER=aj-dev/lti_starter_app
+DROPBOX_FOLDER=aj-dev/atomic_analytics
 ```
 
 #### Setup script
@@ -120,47 +120,47 @@ Now setup should be complete, startup the dev servers with these commands:
   $ rails server
   $ yarn hot
 ```
-Now you should be able to navigate to `ltistarterapp.atomicjolt.xyz` in the browser and see a basic LTI app.
+Now you should be able to navigate to `AtomicAnalytics.atomicjolt.xyz` in the browser and see a basic LTI app.
 Currently the lists will be empty as it is not installed into an LMS, there are not LTI Advantage Services for it to read from
 
 ## Obtain a Canvas Developer Key
 Only a Canvas Account Admin can create a developer key for your LTI Application. To create a key, go to Accounts -> Developer Keys and create a new LTI key and enter the info described below below.
 
-Subsitute `ltistarterapp.atomicjolt.xyz` with your domain. (atomicjolt.xyz will only work for AtomicJolt employees). Also, note that `ltistarterapp` is the `APP_SUBDOMAIN` specified in the .env file.
+Subsitute `AtomicAnalytics.atomicjolt.xyz` with your domain. (atomicjolt.xyz will only work for AtomicJolt employees). Also, note that `AtomicAnalytics` is the `APP_SUBDOMAIN` specified in the .env file.
 
-You will need an ID and secret for development and for production. The development URI will use atomicjolt.xyz while the production URI will use your domain (e.g. ltistarterapp.herokuapp.com).
+You will need an ID and secret for development and for production. The development URI will use atomicjolt.xyz while the production URI will use your domain (e.g. AtomicAnalytics.herokuapp.com).
 
 **Key Name:**
-Can be anything you choose (e.g. LTI Starter App)
+Can be anything you choose (e.g. Atomic Analytics)
 
 **Owner Email:**
 Address that will receive email about technical issues related to the tool.
 
 **Redirect URIs:**
 ```
-https://ltistarterapp.atomicjolt.xyz/lti_launches
-https://ltistarterapp.atomicjolt.xyz/users/auth/[provider]/callback
+https://AtomicAnalytics.atomicjolt.xyz/lti_launches
+https://AtomicAnalytics.atomicjolt.xyz/users/auth/[provider]/callback
 ```
-`provider` here refers to the LTI tool provider that the app is to be installed in (i.e Canvas or Blackboard). So if the app was being installed in canvas the url would be `https://ltistarterapp.atomicjolt.xyz/users/auth/canvas/callback`
+`provider` here refers to the LTI tool provider that the app is to be installed in (i.e Canvas or Blackboard). So if the app was being installed in canvas the url would be `https://AtomicAnalytics.atomicjolt.xyz/users/auth/canvas/callback`
 
-**Title**: Can be anything you choose (e.g. LTI Starter App)
+**Title**: Can be anything you choose (e.g. Atomic Analytics)
 
 **Description**: Short description of what the key will be used for
 
 **Target Link URI:**
 ```
-https://ltistarterapp.atomicjolt.xyz/lti_launches
+https://AtomicAnalytics.atomicjolt.xyz/lti_launches
 ```
 This will be the url used by the LMS when launching the LTI application
 
 **OpenID Connect Initiation Url:**
 ```
-https://ltistarterapp.atomicjolt.xyz/lti_launches/init
+https://AtomicAnalytics.atomicjolt.xyz/lti_launches/init
 ```
 
 **JWK Method (Only for LTI Advantage Installs):** Public JWK
 
-Navigate to `https://ltistarterapp.atomicjolt.xyz/jwks.json` to get a list of JWK keys that are usable for development. Normally for production you would use a *Public JWK Url* to generate the keys as needed
+Navigate to `https://AtomicAnalytics.atomicjolt.xyz/jwks.json` to get a list of JWK keys that are usable for development. Normally for production you would use a *Public JWK Url* to generate the keys as needed
 
 There are many more settings and options available to play around with when creating a key, but these are the nessecary ones when getting a basic app setup.
 

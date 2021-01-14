@@ -1,13 +1,13 @@
 # run with:
-# rails new my_app -m ./lti_starter_app/template.rb
-# rails new my_app -m https://raw.githubusercontent.com/atomicjolt/lti_starter_app/master/template.rb
+# rails new my_app -m ./atomic_analytics/template.rb
+# rails new my_app -m https://raw.githubusercontent.com/atomicjolt/atomic_analytics/master/template.rb
 
 require "fileutils"
 require "securerandom"
 
-# repo = "git@github.com:atomicjolt/lti_starter_app.git"
-repo = "https://github.com/atomicjolt/lti_starter_app.git"
-# repo = "git@bitbucket.com:atomicjolt/lti_starter_app.git"
+# repo = "git@github.com:atomicjolt/atomic_analytics.git"
+repo = "https://github.com/atomicjolt/atomic_analytics.git"
+# repo = "git@bitbucket.com:atomicjolt/atomic_analytics.git"
 
 # keep track if the initial directory
 @working_dir = destination_root
@@ -123,50 +123,50 @@ modify_files << ".ruby-gemset"
 modify_files << "./bin/bootstrap"
 
 modify_files.each do |f|
-  gsub_file(f, "lti_starter_app") do |_match|
+  gsub_file(f, "atomic_analytics") do |_match|
     app_name.underscore
   end
 
-  gsub_file(f, "ltistarterapp") do |_match|
+  gsub_file(f, "AtomicAnalytics") do |_match|
     app_name.titleize.gsub(" ", "")
   end
 
-  gsub_file(f, "LtiStarterApp") do |_match|
+  gsub_file(f, "AtomicAnalytics") do |_match|
     app_name.titleize.gsub(" ", "")
   end
 
-  gsub_file(f, "ltistarterapp") do |_match|
+  gsub_file(f, "AtomicAnalytics") do |_match|
     url_safe_name
   end
 
-  gsub_file(f, "LTI Starter App") do |_match|
+  gsub_file(f, "Atomic Analytics") do |_match|
     app_name.titleize
   end
 
-  gsub_file(f, "HelloWorld") do |_match|
+  gsub_file(f, "AtomicAnalytics") do |_match|
     app_name.titleize.gsub(" ", "")
   end
 
-  gsub_file(f, "Hello World") do |_match|
+  gsub_file(f, "Atomic Analytics") do |_match|
     app_name.titleize
   end
 
-  gsub_file(f, "HELLOWORLD") do |_match|
+  gsub_file(f, "ATOMIC_ANALYTICS") do |_match|
     app_name.underscore.upcase
   end
 
-  gsub_file(f, "hello_world") do |_match|
+  gsub_file(f, "atomic_analytics") do |_match|
     app_name.underscore
   end
 
-  gsub_file(f, "helloworld") do |_match|
+  gsub_file(f, "atomicanalytics") do |_match|
     url_safe_name
   end
 end
 
 def rename_file(f)
-  if f.include?("hello_world")
-    File.rename(f, f.gsub("hello_world", app_name.underscore))
+  if f.include?("atomic_analytics")
+    File.rename(f, f.gsub("atomic_analytics", app_name.underscore))
   end
 end
 

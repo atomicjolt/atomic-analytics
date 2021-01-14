@@ -14,7 +14,7 @@ const mocks = [
     },
     result: {
       data: {
-        welcomeMessage: 'Hello World!',
+        welcomeMessage: 'Atomic Analytics!',
       },
     },
   },
@@ -29,7 +29,7 @@ describe('home', () => {
     );
 
     const tree = testRenderer.toJSON();
-    expect(JSON.stringify(tree).indexOf('Hello World!') === -1).toBe(true);
+    expect(JSON.stringify(tree).indexOf('Atomic Analytics!') === -1).toBe(true);
   });
 
   it('renders the home component', async() => {
@@ -43,7 +43,7 @@ describe('home', () => {
     });
 
     await waitForExpect(() => {
-      expect(JSON.stringify(testRenderer.toJSON()).indexOf('Hello World!') >= 0).toBe(true);
+      expect(JSON.stringify(testRenderer.toJSON()).indexOf('Atomic Analytics!') >= 0).toBe(true);
     });
   });
 });
