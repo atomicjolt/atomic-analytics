@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_14_195556) do
+ActiveRecord::Schema.define(version: 2021_01_19_165938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,20 @@ ActiveRecord::Schema.define(version: 2020_09_14_195556) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lms_course_id"], name: "index_canvas_courses_on_lms_course_id"
+  end
+
+  create_table "canvas_events", force: :cascade do |t|
+    t.string "event_type"
+    t.string "asset_name"
+    t.string "asset_type"
+    t.string "asset_sub_type"
+    t.string "user_id"
+    t.string "context_id"
+    t.datetime "event_time"
+    t.index ["context_id", "event_time", "asset_type"], name: "index_canvas_events_on_context_id_and_event_time_and_asset_type"
+    t.index ["context_id", "event_time"], name: "index_canvas_events_on_context_id_and_event_time"
+    t.index ["context_id"], name: "index_canvas_events_on_context_id"
+    t.index ["user_id"], name: "index_canvas_events_on_user_id"
   end
 
   create_table "ims_exports", id: :serial, force: :cascade do |t|
