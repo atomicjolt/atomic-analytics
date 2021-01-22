@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 2021_01_19_165938) do
     t.string "event_type"
     t.string "asset_name"
     t.string "asset_type"
-    t.string "asset_sub_type"
+    t.string "asset_subtype"
     t.string "user_id"
     t.string "context_id"
     t.datetime "event_time"

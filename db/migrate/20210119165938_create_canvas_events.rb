@@ -4,7 +4,7 @@ class CreateCanvasEvents < ActiveRecord::Migration[5.2]
 			t.string :event_type
 			t.string :asset_name
 			t.string :asset_type
-			t.string :asset_sub_type
+			t.string :asset_subtype
 			t.string :user_id
 			t.string :context_id
 			t.timestamp :event_time
