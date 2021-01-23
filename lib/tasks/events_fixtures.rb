@@ -1,4 +1,5 @@
 module EventsFixtures
+  COURSE_ID = 2556
   USERS = [
     {
       id: 5427,
@@ -89,5 +90,5 @@ module EventsFixtures
     content_tag: [],
     discussion_topic: [],
     attachment: [],
-  }
+  }.freeze
 end
