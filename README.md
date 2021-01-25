@@ -37,6 +37,25 @@ After [setting up the Atomic Analytics](#setting-up-lti-starter-app), start Rail
   $ yarn hot
 ```
 
+## Adding mock asset accessed data
+
+The rake task below will prompt you for:
+  1. If you want to clear previous event data
+  2. How many records you'd like to create
+  3. A chunk size (how many max random events to assign to a
+     student during an iteration)
+  4. A beginning and start date from which random times will be
+     generated.
+
+The task will then insert randomized asset accessed records into
+the database.
+
+At this juncture students, and context_id are hard-coded to constants.
+
+To run the task:
+```
+  $ bundle exec rake events:gen_rand
+```
 
 ## Setting up Atomic Analytics
 
