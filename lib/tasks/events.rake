@@ -15,9 +15,8 @@ end
 =begin
   Todo Later (nice to haves):
     [] Show percent complete bar to user
-    [] Ask user for event type
+    [] Ask user for event type, or array of event types
     [] Ask the user for context_id
-    [] Ask the user for a list of students
     [] Ask the user for a list of students
     [] Give the user an option to pull student data from course id
 =end
