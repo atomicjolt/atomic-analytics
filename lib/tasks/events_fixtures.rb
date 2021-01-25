@@ -1,5 +1,5 @@
 module EventsFixtures
-  COURSE_ID = 2556
+  CONTEXT_ID = 2556
   USERS = [
     {
       id: 5427,

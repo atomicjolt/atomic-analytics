@@ -4,7 +4,7 @@ namespace :events do
   require_relative "events_fixtures"
   users = EventsFixtures::USERS
   asset_types = EventsFixtures::ASSET_TYPES
-  context_id = EventsFixtures::ASSET_TYPES
+  context_id = EventsFixtures::CONTEXT_ID
 
   desc "Generate random events into canvas_events table"
   task gen_rand: :environment do
@@ -14,9 +14,10 @@ end
 
 =begin
   Todo:
-    [] Ask user for date range
+    [X] Ask user for date range
 
   Todo Later (nice to haves):
+    [] Show percent complete bar to user
     [] Ask user for event type
     [] Ask the user for context_id
     [] Ask the user for a list of students
@@ -67,6 +68,8 @@ def prompt_user option
       num_records = STDIN.gets.chomp.to_i
     end
 
+    num_records
+
   when :chunk_size
     puts "How many random events do you want to assign to a student per iteration?"
     puts "[chunk_size/info]"
@@ -101,7 +104,7 @@ def prompt_user option
       end
     end
 
-    start_date
+    start_date.utc.iso8601
 
   when :end_date
     puts "Please specify an end date [yyyy-mm-dd]"
@@ -117,12 +120,33 @@ def prompt_user option
       end
     end
 
-    end_date
+    end_date.utc.iso8601
   end
 end
 
-def time_rand(from = 0.0, to = DateTime.now.utc.iso8601)
-  Time.at(from + rand * (to.to_f - from.to_f))
+def time_rand(start_date, end_date)
+  s = start_date.to_datetime.utc
+  e = end_date.to_datetime.utc
+
+  month_diff = e.month - s.month
+  day_diff = e.day - s.day
+  min_hour = 6
+  max_hour = 24
+  min_second = 1
+  max_second = 60
+
+  rand_month = 1 + rand(month_diff)
+  rand_day = 1 + rand(day_diff)
+  rand_hour = 1 + (max_hour - min_hour)
+  rand_second = 1 + (max_second - min_second)
+
+  s = s + rand_month.month + rand_day.day + rand_hour.hour + rand_second.second
+
+  if s > e
+    e = (e + rand_hour.hour + rand_second.second).iso8601
+  else
+    s.iso8601
+  end
 end
 
 def create_rand_event_records(
@@ -130,13 +154,15 @@ def create_rand_event_records(
   users,
   asset_types, # ASSET_TYPES[asset_type] => asset_subtype
   context_id,
-  chunk_size # How many random possible events on an iteration are assigned to a user
+  chunk_size, # How many random possible events on an iteration are assigned to a user
+  start_date,
+  end_date
 )
   puts "Creating #{num_records} events"
   total = num_records
 
   until total == 0
-    chunk = rand(chunk_size) + 1
+    chunk = (rand(chunk_size) + 1).floor
 
     if total - chunk < 0
       chunk = total - chunk + chunk
@@ -146,6 +172,7 @@ def create_rand_event_records(
       rand_user = users.sample
       rand_asset_type = asset_types.keys.sample
       rand_asset_subtype = asset_types[rand_asset_type].sample
+      rand_time = time_rand(start_date, end_date)
       CanvasEvent.create(
         event_type: "asset_accessed",
         asset_name: nil,
@@ -153,7 +180,7 @@ def create_rand_event_records(
         asset_subtype: rand_asset_subtype,
         user_id: rand_user[:id],
         context_id: context_id, # course id for now
-        event_time: "2019-11-01T00:09:07.276Z",
+        event_time: rand_time,
       )
     end
 
