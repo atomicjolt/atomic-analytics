@@ -13,9 +13,6 @@ namespace :events do
 end
 
 =begin
-  Todo:
-    [X] Ask user for date range
-
   Todo Later (nice to haves):
     [] Show percent complete bar to user
     [] Ask user for event type
