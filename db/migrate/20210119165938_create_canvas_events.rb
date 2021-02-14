@@ -1,18 +1,18 @@
 class CreateCanvasEvents < ActiveRecord::Migration[5.2]
   def change
     create_table :canvas_events do |t|
-			t.string :event_type
-			t.string :asset_name
-			t.string :asset_type
-			t.string :asset_subtype
-			t.string :user_id
-			t.string :context_id
-			t.timestamp :event_time
+      t.string :event_type
+      t.string :asset_name
+      t.string :asset_type
+      t.string :asset_subtype
+      t.string :user_id
+      t.string :context_id
+      t.timestamp :event_time
     end
-		add_index :canvas_events, :user_id
-		add_index :canvas_events, :context_id
-		add_index :canvas_events, [:context_id, :event_time]
-		add_index :canvas_events, [:context_id, :event_time, :asset_type]
+      add_index :canvas_events, :user_id
+      add_index :canvas_events, :context_id
+      add_index :canvas_events, [:context_id, :event_time]
+      add_index :canvas_events, [:context_id, :event_time, :asset_type]
   end
 end
 
