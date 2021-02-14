@@ -1,0 +1,2 @@
+class CanvasEvent < ApplicationRecord
+end
