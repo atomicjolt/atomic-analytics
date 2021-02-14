@@ -50,11 +50,22 @@ The rake task below will prompt you for:
 The task will then insert randomized asset accessed records into
 the database.
 
-At this juncture students, and context_id are hard-coded to constants.
+Students, and context_id can be passed as arguments to the task.
+If no arguments are passed in, the default values will be used
 
-To run the task:
+To run the task with default values:
 ```
   $ bundle exec rake events:gen_rand
+```
+
+To run the task with arguments where:
+- context_id is a number
+- users is an array of user hashes
+
+NOTE: zsh cannot parse arguments correctly so wrap your task with
+quotations as shown below.
+```
+  $ bundle exec rake 'events:gen_rand[context_id, users]'
 ```
 
 ## Setting up Atomic Analytics

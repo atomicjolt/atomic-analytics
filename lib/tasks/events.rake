@@ -2,13 +2,15 @@ require "date"
 
 namespace :events do
   require_relative "events_fixtures"
-  users = EventsFixtures::USERS
-  asset_types = EventsFixtures::ASSET_TYPES
-  context_id = EventsFixtures::CONTEXT_ID
+  USERS = EventsFixtures::USERS
+  ASSET_TYPES = EventsFixtures::ASSET_TYPES
+  CONTEXT_ID = EventsFixtures::CONTEXT_ID
 
   desc "Generate random events into canvas_events table"
-  task gen_rand: :environment do
-    main(users, asset_types, context_id)
+  task :gen_rand, [:context_id, :users] => :environment do |_task, args|
+    args.with_defaults(context_id: CONTEXT_ID, users: USERS)
+    users, context_id = args.values_at(:users, :context_id)
+    main(users, ASSET_TYPES, context_id)
   end
 end
 
@@ -16,8 +18,8 @@ end
   Todo Later (nice to haves):
     [] Show percent complete bar to user
     [] Ask user for event type, or array of event types
-    [] Ask the user for context_id
-    [] Ask the user for a list of students
+    [X] Ask the user for context_id
+    [X] Ask the user for a list of students
     [] Give the user an option to pull student data from course id
 =end
 
